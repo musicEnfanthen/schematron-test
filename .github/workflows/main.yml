@@ -35,7 +35,7 @@ jobs:
           fi
       
       - name: Make tempdir
-        run: tempdir=$(mktemp -d)
+        run: echo tempdir=$(mktemp -d) >> $GITHUB_ENV
       
       - name: Extract rules from the RNG schema
         # TODO: $rngfile; 
