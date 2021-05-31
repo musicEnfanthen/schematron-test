@@ -13,7 +13,7 @@ env:
   SCHEMATRON_COMPILE: utils/schematron/iso_svrl_for_xslt2.xsl"
   SCHEMATRON_LOCATION: schematron
   
-  PATH_TO_SAXON_JAR : saxon_jar
+  PATH_TO_SAXON_JAR: lib/saxon/saxon9he.jar
 
   RED: '\033[0;31m'
   GREEN: '\033[0;32m'
