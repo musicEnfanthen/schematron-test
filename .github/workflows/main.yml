@@ -16,8 +16,6 @@ env:
   
   PATH_TO_SAXON_JAR: lib/saxon/saxon9he.jar
   
-  
-
   RED: '\033[0;31m'
   GREEN: '\033[0;32m'
   PURPLE: '\033[0;35m'
@@ -38,17 +36,15 @@ jobs:
       - name: Setup SaxonHE
         run: ant -noinput -buildfile build.xml init
       
-      - name: Validate
-        run: |
-          cd lib/saxon
-          ls -R
-      
       - name: Create directory if needed
         run: | 
           if [ ! -d $SCHEMATRON_LOCATION ]; then
             echo -e "${PURPLE}Creating schematron directory${NORM}"
             mkdir -p $SCHEMATRON_LOCATION
           fi
+      
+      - name: Create outputfile
+        run: echo schematron_rules=$(basename ${RNG_FILE%%.*}).xsl >> $GITHUB_ENV
       
       - name: Make tempdir
         run: echo tempdir=$(mktemp -d) >> $GITHUB_ENV
@@ -72,4 +68,6 @@ jobs:
       - name: Hooray
         run: echo -e "${GREEN} Finished generating Schematron for ${rngfile}${NORM}"
 
+      - name: Validate
+        run: ls -R
 
