@@ -9,9 +9,9 @@ env:
   RNG_FILE: https://raw.githubusercontent.com/music-encoding/schema/master/dev/mei-all.rng
   
   SCHEMATRON_EXTRACT: utils/schematron/ExtractSchFromRNG-2.xsl
-  SCHEMATRON_PREPROCESS: utils/schematron//iso_dsdl_include.xsl
-  SCHEMATRON_EXPAND: utils/schematron/iso_abstract_expand.xsl"
-  SCHEMATRON_COMPILE: utils/schematron/iso_svrl_for_xslt2.xsl"
+  SCHEMATRON_PREPROCESS: utils/schematron/iso_dsdl_include.xsl
+  SCHEMATRON_EXPAND: utils/schematron/iso_abstract_expand.xsl
+  SCHEMATRON_COMPILE: utils/schematron/iso_svrl_for_xslt2.xsl
   SCHEMATRON_LOCATION: schematron
   
   PATH_TO_SAXON_JAR: lib/saxon/saxon9he.jar
