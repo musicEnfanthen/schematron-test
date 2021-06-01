@@ -27,6 +27,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - name: Install SaxonHE
+        run: | 
+          sudo apt-get update -y
+          sudo apt-get install -y libsaxon-java
+      
+      - name: Validate
+        run: ls -R
+      
       - name: Create directory if needed
         run: | 
           if [ ! -d $SCHEMATRON_LOCATION ]; then
