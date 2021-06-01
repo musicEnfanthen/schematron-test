@@ -34,8 +34,7 @@ jobs:
       
       - name: Validate
         run: | 
-          cd usr/share
-          ls
+          dpkg -L libsaxon-java
       
       - name: Create directory if needed
         run: | 
