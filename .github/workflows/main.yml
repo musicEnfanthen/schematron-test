@@ -6,6 +6,7 @@ on:
 env:
   SCHEMATRON_FILES: utils/schematron
   DRIVER_FILE: source/mei-source.xml
+  RNG_FILE: https://raw.githubusercontent.com/music-encoding/schema/master/dev/mei-all.rng
   
   SCHEMATRON_EXTRACT: utils/schematron/ExtractSchFromRNG-2.xsl
   SCHEMATRON_PREPROCESS: utils/schematron//iso_dsdl_include.xsl
@@ -14,6 +15,8 @@ env:
   SCHEMATRON_LOCATION: schematron
   
   PATH_TO_SAXON_JAR: lib/saxon/saxon9he.jar
+  
+  
 
   RED: '\033[0;31m'
   GREEN: '\033[0;32m'
@@ -43,7 +46,7 @@ jobs:
       - name: Create directory if needed
         run: | 
           if [ ! -d $SCHEMATRON_LOCATION ]; then
-            echo -e "Creating schematron directory"
+            echo -e "${PURPLE}Creating schematron directory${NORM}"
             mkdir -p $SCHEMATRON_LOCATION
           fi
       
@@ -52,7 +55,7 @@ jobs:
       
       - name: Extract rules from the RNG schema
         # TODO: $rngfile; 
-        run: java -jar $PATH_TO_SAXON_JAR -versionmsg:off -s:$rngfile -xsl:$SCHEMATRON_EXTRACT -o:${tempdir}/schematron-rules.sch
+        run: java -jar $PATH_TO_SAXON_JAR -versionmsg:off -s:$RNG_FILE -xsl:$SCHEMATRON_EXTRACT -o:${tempdir}/schematron-rules.sch
 
       - name: Preprocess
         run: java -jar $PATH_TO_SAXON_JAR -versionmsg:off -s:${tempdir}/schematron-rules.sch -xsl:$SCHEMATRON_PREPROCESS -o:${tempdir}/schematron-preprocess.sch
